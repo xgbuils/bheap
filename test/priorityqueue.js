@@ -218,4 +218,18 @@ describe('PriorityQueue()', function() {
       expect(queue.deq()).to.be(c);
     });
   });
+
+  describe('#heapify()', function() {
+    it('sets priority queue based on array', function () {
+      var queue = new PriorityQueue();
+      queue.heapify([1,8,4,3,7,2]);
+
+      expect(queue.deq()).to.be(8);
+      expect(queue.deq()).to.be(7);
+      expect(queue.deq()).to.be(4);
+      expect(queue.deq()).to.be(3);
+      expect(queue.deq()).to.be(2);
+      expect(queue.deq()).to.be(1);
+    });
+  });
 });

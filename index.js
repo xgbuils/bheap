@@ -79,26 +79,8 @@ PriorityQueue.prototype.deq = function() {
   if (size === 0) return first;
 
   this._elements[0] = last;
-  var current = 0;
 
-  while (current < size) {
-    var largest = current;
-    var left = (2 * current) + 1;
-    var right = (2 * current) + 2;
-
-    if (left < size && this._compare(left, largest) >= 0) {
-      largest = left;
-    }
-
-    if (right < size && this._compare(right, largest) >= 0) {
-      largest = right;
-    }
-
-    if (largest === current) break;
-
-    this._swap(largest, current);
-    current = largest;
-  }
+  sink.call(this, 0, size)
 
   return first;
 };
@@ -145,6 +127,21 @@ PriorityQueue.prototype.forEach = function(fn) {
   return this._elements.forEach(fn);
 };
 
+
+/**
+ *  Creates priority queue elements based on array
+ *
+ *  @param {Array} arr
+ */
+PriorityQueue.prototype.heapify = function(arr) {
+  var size = arr.length
+  this._elements = [].concat(arr)
+
+  for (var i = size / 2 - 1; i >= 0; --i) {
+    sink.call(this, i, size)
+  }
+};
+
 /**
  * Compares the values at position `a` and `b` in the priority queue using its
  * comparator function.
@@ -170,3 +167,24 @@ PriorityQueue.prototype._swap = function(a, b) {
   this._elements[a] = this._elements[b];
   this._elements[b] = aux;
 };
+
+function sink(current, size) {
+  while (current < size) {
+    var largest = current;
+    var left = (2 * current) + 1;
+    var right = (2 * current) + 2;
+
+    if (left < size && this._compare(left, largest) >= 0) {
+      largest = left;
+    }
+
+    if (right < size && this._compare(right, largest) >= 0) {
+      largest = right;
+    }
+
+    if (largest === current) break;
+
+    this._swap(largest, current);
+    current = largest;
+  }
+}
