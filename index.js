@@ -123,16 +123,6 @@ BinaryHeap.prototype.size = function() {
 }
 
 /**
- *  Iterates over queue elements
- *
- *  @param {Function} fn
- */
-BinaryHeap.prototype.forEach = function(fn) {
-  return this._elements.forEach(fn)
-}
-
-
-/**
  *  Creates binary heap elements based on array
  *
  *  @param {Array} arr

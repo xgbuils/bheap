@@ -56,11 +56,6 @@ Throws an `Error` when the heap is empty.
 
 Push the `element` at the binary heap and returns its new size.
 
-### BinaryHeap#forEach(fn)
-
-Executes `fn` on each element. Just be careful to not modify the priorities,
-since the heap won't reorder itself.
-
 ### BinaryHeap#isEmpty()
 
 Returns whether the binary heap is empty or not.
@@ -75,13 +70,6 @@ Throws an `Error` when the heap is empty.
 Returns the size of the binary heap.
 
 ## Testing
-
-As component in the browser, open test/test.html in your browser:
-
-```
-$ make
-$ open test/test.html
-```
 
 As npm package:
 

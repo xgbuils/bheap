@@ -216,25 +216,6 @@ describe('BinaryHeap()', function() {
         })
     })
 
-    describe('#forEach()', function() {
-        it('iterates over all heap elements', function () {
-            var heap = new BinaryHeap()
-            heap.push('a')
-            heap.push('b')
-            var iteration = []
-
-            heap.forEach(function(element, index) {
-              iteration.push([element, index])
-            })
-
-            iteration.length.should.be.equal(2)
-            iteration[0][0].should.be.equal('b')
-            iteration[0][1].should.be.equal(0)
-            iteration[1][0].should.be.equal('a')
-            iteration[1][1].should.be.equal(1)
-        })
-    })
-
     describe('when there are elements with the same priority', function() {
         it('retains the queue behavior', function () {
             var heap = new BinaryHeap(function (a, b) { return b.pri - a.pri })
