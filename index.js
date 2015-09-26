@@ -1,21 +1,21 @@
 /**
- * Expose `PriorityQueue`.
+ * Expose `BinaryHeap`.
  */
-module.exports = PriorityQueue;
+module.exports = BinaryHeap;
 
 /**
- * Initializes a new empty `PriorityQueue` with the given `comparator(a, b)`
+ * Initializes a new empty `BinaryHeap` with the given `comparator(a, b)`
  * function, uses `.DEFAULT_COMPARATOR()` when no function is provided.
  *
  * The comparator function must return a positive number when `a > b`, 0 when
  * `a == b` and a negative number when `a < b`.
  *
  * @param {Function}
- * @return {PriorityQueue}
+ * @return {BinaryHeap}
  * @api public
  */
-function PriorityQueue(comparator) {
-  this._comparator = comparator || PriorityQueue.DEFAULT_COMPARATOR;
+function BinaryHeap(comparator) {
+  this._comparator = comparator || BinaryHeap.DEFAULT_COMPARATOR;
   this._elements = [];
 }
 
@@ -28,7 +28,7 @@ function PriorityQueue(comparator) {
  * @return {Number}
  * @api public
  */
-PriorityQueue.DEFAULT_COMPARATOR = function(a, b) {
+BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
   if (typeof a === 'number' && typeof b === 'number') {
     return a - b;
   } else {
@@ -42,36 +42,36 @@ PriorityQueue.DEFAULT_COMPARATOR = function(a, b) {
 };
 
 /**
- * Returns whether the priority queue is empty or not.
+ * Returns whether the binary heap is empty or not.
  *
  * @return {Boolean}
  * @api public
  */
-PriorityQueue.prototype.isEmpty = function() {
+BinaryHeap.prototype.isEmpty = function() {
   return this.size() === 0;
 };
 
 /**
- * Peeks at the top element of the priority queue.
+ * Peeks at the top element of the binary heap.
  *
  * @return {Object}
- * @throws {Error} when the queue is empty.
+ * @throws {Error} when the heap is empty.
  * @api public
  */
-PriorityQueue.prototype.peek = function() {
-  if (this.isEmpty()) throw new Error('PriorityQueue is empty');
+BinaryHeap.prototype.peek = function() {
+  if (this.isEmpty()) throw new Error('BinaryHeap is empty');
 
   return this._elements[0];
 };
 
 /**
- * Dequeues the top element of the priority queue.
+ * Gets the top element of the binary heap.
  *
  * @return {Object}
  * @throws {Error} when the queue is empty.
  * @api public
  */
-PriorityQueue.prototype.deq = function() {
+BinaryHeap.prototype.deq = function() {
   var first = this.peek();
   var last = this._elements.pop();
   var size = this.size();
@@ -86,13 +86,13 @@ PriorityQueue.prototype.deq = function() {
 };
 
 /**
- * Enqueues the `element` at the priority queue and returns its new size.
+ * Push the `element` at the binary heap and returns its new size.
  *
  * @param {Object} element
  * @return {Number}
  * @api public
  */
-PriorityQueue.prototype.enq = function(element) {
+BinaryHeap.prototype.enq = function(element) {
   var size = this._elements.push(element);
   var current = size - 1;
 
@@ -109,12 +109,12 @@ PriorityQueue.prototype.enq = function(element) {
 };
 
 /**
- * Returns the size of the priority queue.
+ * Returns the size of the binary heap.
  *
  * @return {Number}
  * @api public
  */
-PriorityQueue.prototype.size = function() {
+BinaryHeap.prototype.size = function() {
   return this._elements.length;
 };
 
@@ -123,17 +123,17 @@ PriorityQueue.prototype.size = function() {
  *
  *  @param {Function} fn
  */
-PriorityQueue.prototype.forEach = function(fn) {
+BinaryHeap.prototype.forEach = function(fn) {
   return this._elements.forEach(fn);
 };
 
 
 /**
- *  Creates priority queue elements based on array
+ *  Creates binary heap elements based on array
  *
  *  @param {Array} arr
  */
-PriorityQueue.prototype.heapify = function(arr) {
+BinaryHeap.prototype.heapify = function(arr) {
   var size = arr.length
   this._elements = [].concat(arr)
 
@@ -143,7 +143,7 @@ PriorityQueue.prototype.heapify = function(arr) {
 };
 
 /**
- * Compares the values at position `a` and `b` in the priority queue using its
+ * Compares the values at position `a` and `b` in the binary heap using its
  * comparator function.
  *
  * @param {Number} a
@@ -151,18 +151,18 @@ PriorityQueue.prototype.heapify = function(arr) {
  * @return {Number}
  * @api private
  */
-PriorityQueue.prototype._compare = function(a, b) {
+BinaryHeap.prototype._compare = function(a, b) {
   return this._comparator(this._elements[a], this._elements[b]);
 };
 
 /**
- * Swaps the values at position `a` and `b` in the priority queue.
+ * Swaps the values at position `a` and `b` in the binary heap.
  *
  * @param {Number} a
  * @param {Number} b
  * @api private
  */
-PriorityQueue.prototype._swap = function(a, b) {
+BinaryHeap.prototype._swap = function(a, b) {
   var aux = this._elements[a];
   this._elements[a] = this._elements[b];
   this._elements[b] = aux;

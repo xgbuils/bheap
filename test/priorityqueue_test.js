@@ -1,101 +1,101 @@
-var PriorityQueue = require('../')
+var BinaryHeap = require('../')
 var chai = require('chai');
 var expect = chai.expect;
 chai.should();
 
-describe('PriorityQueue()', function() {
-    it('returns an new PriorityQueue', function() {
-        var queue = new PriorityQueue()
-        queue.should.be.an.instanceOf(PriorityQueue);
+describe('BinaryHeap()', function() {
+    it('returns an new BinaryHeap', function() {
+        var heap = new BinaryHeap()
+        heap.should.be.an.instanceOf(BinaryHeap);
     });
 
     it('accepts a comparator function', function() {
-        var queue = new PriorityQueue(function(a, b) {
+        var heap = new BinaryHeap(function(a, b) {
             return a - b;
         });
 
-        queue.should.be.an.instanceOf(PriorityQueue);
+        heap.should.be.an.instanceOf(BinaryHeap);
     });
 
     describe('.DEFAULT_COMPARATOR()', function() {
         context('given strings', function() {
             it('returns a negative number when a < b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR('jano', 'valentina').should.be.below(0);
+                BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina').should.be.below(0);
             });
 
             it('returns 0 number when a == b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR('jano', 'jano').should.be.equal(0);
+                BinaryHeap.DEFAULT_COMPARATOR('jano', 'jano').should.be.equal(0);
             });
 
             it('returns a positive number when a > b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR('jano', 'fran').should.be.above(0);
+                BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran').should.be.above(0);
             });
         });
 
         context('given numbers', function() {
             it('returns a negative number when a < b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR(10, 1000).should.be.below(0);
+                BinaryHeap.DEFAULT_COMPARATOR(10, 1000).should.be.below(0);
             });
 
             it('returns 0 number when a == b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR(10, 10).should.be.equal(0);
+                BinaryHeap.DEFAULT_COMPARATOR(10, 10).should.be.equal(0);
             });
 
             it('returns a positive number when a > b', function() {
-                PriorityQueue.DEFAULT_COMPARATOR(10, 1).should.be.above(0);
+                BinaryHeap.DEFAULT_COMPARATOR(10, 1).should.be.above(0);
             });
 
             it('works with `Number` objects', function() {
                 var a = Number(10)
                 var b = Number(1000)
-                PriorityQueue.DEFAULT_COMPARATOR(a, b).should.be.below(0);
+                BinaryHeap.DEFAULT_COMPARATOR(a, b).should.be.below(0);
             });
         });
     });
 
     describe('#isEmpty()', function() {
-        it('returns true when the queue is empty', function() {
-            var queue = new PriorityQueue();
-            queue.isEmpty().should.be.equal(true);
+        it('returns true when the heap is empty', function() {
+            var heap = new BinaryHeap();
+            heap.isEmpty().should.be.equal(true);
         });
 
-        it('returns false when the queue is not empty', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano');
-            queue.isEmpty().should.be.equal(false);
+        it('returns false when the heap is not empty', function() {
+            var heap = new BinaryHeap();
+            heap.enq('jano');
+            heap.isEmpty().should.be.equal(false);
         });
     });
 
     describe('#peek()', function() {
-        it('fails when the queue is empty', function() {
-            var queue = new PriorityQueue();
+        it('fails when the heap is empty', function() {
+            var heap = new BinaryHeap();
             expect(function() {
-                queue.peek();
-            }).to.Throw('PriorityQueue is empty');
+                heap.peek();
+            }).to.Throw('BinaryHeap is empty');
         });
 
-        it('returns the top element of the queue', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano');
-            queue.enq('valentina');
-            queue.enq('zombie');
-            queue.enq('fran');
-            queue.enq('albert');
-            queue.enq('albert');
-            queue.enq('frank');
-            queue.peek().should.be.equal('zombie');
+        it('returns the top element of the heap', function() {
+            var heap = new BinaryHeap();
+            heap.enq('jano');
+            heap.enq('valentina');
+            heap.enq('zombie');
+            heap.enq('fran');
+            heap.enq('albert');
+            heap.enq('albert');
+            heap.enq('frank');
+            heap.peek().should.be.equal('zombie');
         });
     });
 
     describe('#deq()', function() {
-        it('fails when the queue is empty', function() {
-            var queue = new PriorityQueue();
+        it('fails when the heap is empty', function() {
+            var heap = new BinaryHeap();
             expect(function() {
-                queue.deq();
-            }).to.Throw('PriorityQueue is empty');
+                heap.deq();
+            }).to.Throw('BinaryHeap is empty');
         });
 
-        it('dequeues the top element of the queue', function() {
+        it('pops the top element of the heap', function() {
             var unsortedList = [
                 'jano',
                 'valentina',
@@ -108,13 +108,13 @@ describe('PriorityQueue()', function() {
                 'valentina',
                 'zombie'
             ];
-            var queue = unsortedList.reduce(function (queue, item) {
-                queue.enq(item);
-                return queue;
-            }, new PriorityQueue());
+            var heap = unsortedList.reduce(function (heap, item) {
+                heap.enq(item);
+                return heap;
+            }, new BinaryHeap());
             var sortedList = []
             unsortedList.forEach(function () {
-                sortedList.push(queue.deq());
+                sortedList.push(heap.deq());
             });
             sortedList.should.be.deep.equal([
                 'zombie',
@@ -128,15 +128,15 @@ describe('PriorityQueue()', function() {
                 'albert',
                 'albert'
             ])
-            queue.isEmpty().should.be.equal(true);
+            heap.isEmpty().should.be.equal(true);
         });
 
         it('not fails with only one element', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano');
+            var heap = new BinaryHeap();
+            heap.enq('jano');
 
-            queue.deq().should.be.equal('jano');
-            queue.size().should.be.equal(0);
+            heap.deq().should.be.equal('jano');
+            heap.size().should.be.equal(0);
         });
 
         it('works with custom comparators', function() {
@@ -146,16 +146,16 @@ describe('PriorityQueue()', function() {
                 { priority: 0 },
                 { priority: 5 }
             ];
-            var queue = unsortedList.reduce(function (queue, item) {
-                queue.enq(item);
-                return queue;
-            }, new PriorityQueue(function(a, b) {
+            var heap = unsortedList.reduce(function (heap, item) {
+                heap.enq(item);
+                return heap;
+            }, new BinaryHeap(function(a, b) {
                 return b.priority - a.priority;
             }));
 
             var sortedList = []
             unsortedList.forEach(function () {
-                sortedList.push(queue.deq());
+                sortedList.push(heap.deq());
             });
 
             sortedList.should.be.deep.equal([
@@ -164,23 +164,23 @@ describe('PriorityQueue()', function() {
                 { priority: 5 },
                 { priority: 100 }
             ]);
-            queue.isEmpty().should.be.equal(true);
+            heap.isEmpty().should.be.equal(true);
         });
     });
 
     describe('#enq()', function() {
-        it('enqueues an element at the end of the queue', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano');
-            queue.enq('valentina');
-            queue.enq('fran');
-            queue.peek().should.be.equal('valentina');
-            queue.size().should.be.equal(3);
+        it('pushes an element at the end of the heap', function() {
+            var heap = new BinaryHeap();
+            heap.enq('jano');
+            heap.enq('valentina');
+            heap.enq('fran');
+            heap.peek().should.be.equal('valentina');
+            heap.size().should.be.equal(3);
         });
 
-        it('returns the new size of the queue', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano').should.be.equal(1);
+        it('returns the new size of the heap', function() {
+            var heap = new BinaryHeap();
+            heap.enq('jano').should.be.equal(1);
         });
 
         it('works with custom comparators', function() {
@@ -190,40 +190,40 @@ describe('PriorityQueue()', function() {
                 { priority: 0 },
                 { priority: 5 }
             ];
-            var queue = unsortedList.reduce(function (queue, item) {
-                queue.enq(item);
-                return queue;
-            }, new PriorityQueue(function(a, b) {
+            var heap = unsortedList.reduce(function (heap, item) {
+                heap.enq(item);
+                return heap;
+            }, new BinaryHeap(function(a, b) {
                 return b.priority - a.priority;
             }));
 
-            queue.peek().should.be.deep.equal({ priority: -1 });
-            queue.size().should.be.equal(4);
+            heap.peek().should.be.deep.equal({ priority: -1 });
+            heap.size().should.be.equal(4);
         });
     });
 
     describe('#size()', function() {
-        it('returns 0 when the queue is empty', function() {
-            var queue = new PriorityQueue();
-            queue.size().should.be.equal(0);
+        it('returns 0 when the heap is empty', function() {
+            var heap = new BinaryHeap();
+            heap.size().should.be.equal(0);
         });
 
-        it('returns the size of the queue', function() {
-            var queue = new PriorityQueue();
-            queue.enq('jano');
-            queue.enq('valentina');
-            queue.size().should.be.equal(2);
+        it('returns the size of the heap', function() {
+            var heap = new BinaryHeap();
+            heap.enq('jano');
+            heap.enq('valentina');
+            heap.size().should.be.equal(2);
         });
     });
 
     describe('#forEach()', function() {
-        it('iterates over all queue elements', function () {
-            var queue = new PriorityQueue();
-            queue.enq('a');
-            queue.enq('b');
+        it('iterates over all heap elements', function () {
+            var heap = new BinaryHeap();
+            heap.enq('a');
+            heap.enq('b');
             var iteration = [];
 
-            queue.forEach(function(element, index) {
+            heap.forEach(function(element, index) {
               iteration.push([element, index]);
             });
 
@@ -237,31 +237,31 @@ describe('PriorityQueue()', function() {
 
     describe('when there are elements with the same priority', function() {
         it('retains the queue behavior', function () {
-            var queue = new PriorityQueue(function (a, b) { return b.pri - a.pri; });
+            var heap = new BinaryHeap(function (a, b) { return b.pri - a.pri; });
             var a = { pri: 1, val: 1 }
             var b = { pri: 1, val: 2 }
             var c = { pri: 1, val: 3 }
-            queue.enq(a);
-            queue.enq(b);
-            queue.enq(c);
+            heap.enq(a);
+            heap.enq(b);
+            heap.enq(c);
 
-            queue.deq().should.be.equal(a);
-            queue.deq().should.be.equal(b);
-            queue.deq().should.be.equal(c);
+            heap.deq().should.be.equal(a);
+            heap.deq().should.be.equal(b);
+            heap.deq().should.be.equal(c);
         });
     });
 
     describe('#heapify()', function() {
-        it('sets priority queue based on array', function () {
-            var queue = new PriorityQueue();
-            queue.heapify([1,8,4,3,7,2]);
+        it('sets binary heap based on array', function () {
+            var heap = new BinaryHeap();
+            heap.heapify([1,8,4,3,7,2]);
 
-            queue.deq().should.be.equal(8);
-            queue.deq().should.be.equal(7);
-            queue.deq().should.be.equal(4);
-            queue.deq().should.be.equal(3);
-            queue.deq().should.be.equal(2);
-            queue.deq().should.be.equal(1);
+            heap.deq().should.be.equal(8);
+            heap.deq().should.be.equal(7);
+            heap.deq().should.be.equal(4);
+            heap.deq().should.be.equal(3);
+            heap.deq().should.be.equal(2);
+            heap.deq().should.be.equal(1);
         });
     });
 });
