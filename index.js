@@ -10,16 +10,20 @@ module.exports = BinaryHeap
  * The comparator function must return a positive number when `a > b`, 0 when
  * `a == b` and a negative number when `a < b`.
  *
- * @param {Function}
- * @return {BinaryHeap}
+ * @param {(Array|Function)} [array=[]] - array of elements to insert in heap
+ * or comparator function.
+ * @param {Function} [comparator=BinaryHeap.DEFAULT_COMPARATOR] - function that
+ * compares elements to sort binary heap.
+ * @returns {BinaryHeap} create instance of binary heap class.
  * @api public
  */
 function BinaryHeap(array, comparator) {
-  if (!array || typeof array === 'function') {
+  if (!array || !Array.isArray(array)) {
       comparator = array
       array = []
   }
-  this._comparator = comparator || BinaryHeap.DEFAULT_COMPARATOR
+  this._comparator = typeof comparator === 'function'
+      ? comparator : BinaryHeap.DEFAULT_COMPARATOR
   this.heapify(array)
 }
 
@@ -27,9 +31,9 @@ function BinaryHeap(array, comparator) {
  * Compares `a` and `b`, when `a > b` it returns a positive number, when
  * it returns 0 and when `a < b` it returns a negative number.
  *
- * @param {String|Number} a
- * @param {String|Number} b
- * @return {Number}
+ * @param {String|Number} a - first parameter to compare
+ * @param {String|Number} b - second parameter to compare
+ * @returns {Number} indicates result of comparison
  * @api public
  */
 BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
@@ -48,7 +52,7 @@ BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
 /**
  * Returns whether the binary heap is empty or not.
  *
- * @return {Boolean}
+ * @returns {Boolean} indicates if binary heap is empty or not
  * @api public
  */
 BinaryHeap.prototype.isEmpty = function() {
@@ -58,8 +62,8 @@ BinaryHeap.prototype.isEmpty = function() {
 /**
  * Peeks at the top element of the binary heap.
  *
- * @return {Object}
  * @throws {Error} when the heap is empty.
+ * @returns {*} element of binary heap
  * @api public
  */
 BinaryHeap.prototype.top = function() {
@@ -71,7 +75,7 @@ BinaryHeap.prototype.top = function() {
 /**
  * Gets the top element of the binary heap.
  *
- * @return {Object}
+ * @returns {*} element of binary heap
  * @throws {Error} when the queue is empty.
  * @api public
  */
@@ -92,8 +96,8 @@ BinaryHeap.prototype.pop = function() {
 /**
  * Push the `element` at the binary heap and returns its new size.
  *
- * @param {Object} element
- * @return {Number}
+ * @param {*} element of binary heap
+ * @returns {Number} new size of heap
  * @api public
  */
 BinaryHeap.prototype.push = function(element) {
@@ -115,7 +119,7 @@ BinaryHeap.prototype.push = function(element) {
 /**
  * Returns the size of the binary heap.
  *
- * @return {Number}
+ * @returns {Number} size of heap
  * @api public
  */
 BinaryHeap.prototype.size = function() {
@@ -125,7 +129,8 @@ BinaryHeap.prototype.size = function() {
 /**
  *  Creates binary heap elements based on array
  *
- *  @param {Array} arr
+ * @param {Array} arr - list of elements to set in binary heap
+ * @returns {undefined} - void
  */
 BinaryHeap.prototype.heapify = function(arr) {
   var size = arr.length
@@ -140,9 +145,9 @@ BinaryHeap.prototype.heapify = function(arr) {
  * Compares the values at position `a` and `b` in the binary heap using its
  * comparator function.
  *
- * @param {Number} a
- * @param {Number} b
- * @return {Number}
+ * @param {Number} a - position of first value
+ * @param {Number} b - position of second value
+ * @returns {Number} - number such that sign indicates the status of comparison
  * @api private
  */
 BinaryHeap.prototype._compare = function(a, b) {
@@ -152,8 +157,9 @@ BinaryHeap.prototype._compare = function(a, b) {
 /**
  * Swaps the values at position `a` and `b` in the binary heap.
  *
- * @param {Number} a
- * @param {Number} b
+ * @param {Number} a - position of first value
+ * @param {Number} b - position of second value
+ * @returns {undefined}
  * @api private
  */
 BinaryHeap.prototype._swap = function(a, b) {
