@@ -12,11 +12,11 @@
   "main": "index.js",
   "dependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/janogonzalez/priorityqueuejs.git"
+    "url": "https://github.com/xgbuils/bheap.git"
   },
   "keywords": [
     "heap",

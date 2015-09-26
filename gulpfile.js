@@ -1,7 +1,8 @@
 var gulp  = require('gulp')
 var mocha = require('gulp-mocha')
+var eslint = require('gulp-eslint');
 
 gulp.task('test', function () {
-  gulp.src('./test/priorityqueue_test.js')
+  gulp.src('./test/binaryheap_test.js')
     .pipe(mocha())
 })

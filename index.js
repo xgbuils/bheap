@@ -14,9 +14,13 @@ module.exports = BinaryHeap;
  * @return {BinaryHeap}
  * @api public
  */
-function BinaryHeap(comparator) {
+function BinaryHeap(array, comparator) {
+  if (!array || typeof array === 'function') {
+      comparator = array
+      array = []
+  }
   this._comparator = comparator || BinaryHeap.DEFAULT_COMPARATOR;
-  this._elements = [];
+  this.heapify(array);
 }
 
 /**
