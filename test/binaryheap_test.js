@@ -61,29 +61,29 @@ describe('BinaryHeap()', function() {
 
         it('returns false when the heap is not empty', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano')
+            heap.push('jano')
             heap.isEmpty().should.be.equal(false)
         })
     })
 
-    describe('#peek()', function() {
+    describe('#top()', function() {
         it('fails when the heap is empty', function() {
             var heap = new BinaryHeap()
             expect(function() {
-                heap.peek()
+                heap.top()
             }).to.Throw('BinaryHeap is empty')
         })
 
         it('returns the top element of the heap', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano')
-            heap.enq('valentina')
-            heap.enq('zombie')
-            heap.enq('fran')
-            heap.enq('albert')
-            heap.enq('albert')
-            heap.enq('frank')
-            heap.peek().should.be.equal('zombie')
+            heap.push('jano')
+            heap.push('valentina')
+            heap.push('zombie')
+            heap.push('fran')
+            heap.push('albert')
+            heap.push('albert')
+            heap.push('frank')
+            heap.top().should.be.equal('zombie')
         })
     })
 
@@ -91,7 +91,7 @@ describe('BinaryHeap()', function() {
         it('fails when the heap is empty', function() {
             var heap = new BinaryHeap()
             expect(function() {
-                heap.deq()
+                heap.pop()
             }).to.Throw('BinaryHeap is empty')
         })
 
@@ -109,12 +109,12 @@ describe('BinaryHeap()', function() {
                 'zombie'
             ]
             var heap = unsortedList.reduce(function (heap, item) {
-                heap.enq(item)
+                heap.push(item)
                 return heap
             }, new BinaryHeap())
             var sortedList = []
             unsortedList.forEach(function () {
-                sortedList.push(heap.deq())
+                sortedList.push(heap.pop())
             })
             sortedList.should.be.deep.equal([
                 'zombie',
@@ -133,9 +133,9 @@ describe('BinaryHeap()', function() {
 
         it('not fails with only one element', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano')
+            heap.push('jano')
 
-            heap.deq().should.be.equal('jano')
+            heap.pop().should.be.equal('jano')
             heap.size().should.be.equal(0)
         })
 
@@ -147,7 +147,7 @@ describe('BinaryHeap()', function() {
                 { priority: 5 }
             ]
             var heap = unsortedList.reduce(function (heap, item) {
-                heap.enq(item)
+                heap.push(item)
                 return heap
             }, new BinaryHeap(function(a, b) {
                 return b.priority - a.priority
@@ -155,7 +155,7 @@ describe('BinaryHeap()', function() {
 
             var sortedList = []
             unsortedList.forEach(function () {
-                sortedList.push(heap.deq())
+                sortedList.push(heap.pop())
             })
 
             sortedList.should.be.deep.equal([
@@ -168,19 +168,19 @@ describe('BinaryHeap()', function() {
         })
     })
 
-    describe('#enq()', function() {
+    describe('#push()', function() {
         it('pushes an element at the end of the heap', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano')
-            heap.enq('valentina')
-            heap.enq('fran')
-            heap.peek().should.be.equal('valentina')
+            heap.push('jano')
+            heap.push('valentina')
+            heap.push('fran')
+            heap.top().should.be.equal('valentina')
             heap.size().should.be.equal(3)
         })
 
         it('returns the new size of the heap', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano').should.be.equal(1)
+            heap.push('jano').should.be.equal(1)
         })
 
         it('works with custom comparators', function() {
@@ -191,13 +191,13 @@ describe('BinaryHeap()', function() {
                 { priority: 5 }
             ]
             var heap = unsortedList.reduce(function (heap, item) {
-                heap.enq(item)
+                heap.push(item)
                 return heap
             }, new BinaryHeap(function(a, b) {
                 return b.priority - a.priority
             }))
 
-            heap.peek().should.be.deep.equal({ priority: -1 })
+            heap.top().should.be.deep.equal({ priority: -1 })
             heap.size().should.be.equal(4)
         })
     })
@@ -210,8 +210,8 @@ describe('BinaryHeap()', function() {
 
         it('returns the size of the heap', function() {
             var heap = new BinaryHeap()
-            heap.enq('jano')
-            heap.enq('valentina')
+            heap.push('jano')
+            heap.push('valentina')
             heap.size().should.be.equal(2)
         })
     })
@@ -219,8 +219,8 @@ describe('BinaryHeap()', function() {
     describe('#forEach()', function() {
         it('iterates over all heap elements', function () {
             var heap = new BinaryHeap()
-            heap.enq('a')
-            heap.enq('b')
+            heap.push('a')
+            heap.push('b')
             var iteration = []
 
             heap.forEach(function(element, index) {
@@ -241,13 +241,13 @@ describe('BinaryHeap()', function() {
             var a = { pri: 1, val: 1 }
             var b = { pri: 1, val: 2 }
             var c = { pri: 1, val: 3 }
-            heap.enq(a)
-            heap.enq(b)
-            heap.enq(c)
+            heap.push(a)
+            heap.push(b)
+            heap.push(c)
 
-            heap.deq().should.be.equal(a)
-            heap.deq().should.be.equal(b)
-            heap.deq().should.be.equal(c)
+            heap.pop().should.be.equal(a)
+            heap.pop().should.be.equal(b)
+            heap.pop().should.be.equal(c)
         })
     })
 
@@ -256,12 +256,12 @@ describe('BinaryHeap()', function() {
             var heap = new BinaryHeap()
             heap.heapify([1,8,4,3,7,2])
 
-            heap.deq().should.be.equal(8)
-            heap.deq().should.be.equal(7)
-            heap.deq().should.be.equal(4)
-            heap.deq().should.be.equal(3)
-            heap.deq().should.be.equal(2)
-            heap.deq().should.be.equal(1)
+            heap.pop().should.be.equal(8)
+            heap.pop().should.be.equal(7)
+            heap.pop().should.be.equal(4)
+            heap.pop().should.be.equal(3)
+            heap.pop().should.be.equal(2)
+            heap.pop().should.be.equal(1)
         })
     })
 })

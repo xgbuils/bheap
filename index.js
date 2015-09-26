@@ -62,7 +62,7 @@ BinaryHeap.prototype.isEmpty = function() {
  * @throws {Error} when the heap is empty.
  * @api public
  */
-BinaryHeap.prototype.peek = function() {
+BinaryHeap.prototype.top = function() {
   if (this.isEmpty()) throw new Error('BinaryHeap is empty')
 
   return this._elements[0]
@@ -75,8 +75,8 @@ BinaryHeap.prototype.peek = function() {
  * @throws {Error} when the queue is empty.
  * @api public
  */
-BinaryHeap.prototype.deq = function() {
-  var first = this.peek()
+BinaryHeap.prototype.pop = function() {
+  var first = this.top()
   var last = this._elements.pop()
   var size = this.size()
 
@@ -96,7 +96,7 @@ BinaryHeap.prototype.deq = function() {
  * @return {Number}
  * @api public
  */
-BinaryHeap.prototype.enq = function(element) {
+BinaryHeap.prototype.push = function(element) {
   var size = this._elements.push(element)
   var current = size - 1
 
