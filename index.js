@@ -1,7 +1,7 @@
 /**
  * Expose `BinaryHeap`.
  */
-module.exports = BinaryHeap;
+module.exports = BinaryHeap
 
 /**
  * Initializes a new empty `BinaryHeap` with the given `comparator(a, b)`
@@ -19,8 +19,8 @@ function BinaryHeap(array, comparator) {
       comparator = array
       array = []
   }
-  this._comparator = comparator || BinaryHeap.DEFAULT_COMPARATOR;
-  this.heapify(array);
+  this._comparator = comparator || BinaryHeap.DEFAULT_COMPARATOR
+  this.heapify(array)
 }
 
 /**
@@ -34,16 +34,16 @@ function BinaryHeap(array, comparator) {
  */
 BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
   if (typeof a === 'number' && typeof b === 'number') {
-    return a - b;
+    return a - b
   } else {
-    a = a.toString();
-    b = b.toString();
+    a = a.toString()
+    b = b.toString()
 
-    if (a == b) return 0;
+    if (a == b) return 0
 
-    return (a > b) ? 1 : -1;
+    return (a > b) ? 1 : -1
   }
-};
+}
 
 /**
  * Returns whether the binary heap is empty or not.
@@ -52,8 +52,8 @@ BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
  * @api public
  */
 BinaryHeap.prototype.isEmpty = function() {
-  return this.size() === 0;
-};
+  return this.size() === 0
+}
 
 /**
  * Peeks at the top element of the binary heap.
@@ -63,10 +63,10 @@ BinaryHeap.prototype.isEmpty = function() {
  * @api public
  */
 BinaryHeap.prototype.peek = function() {
-  if (this.isEmpty()) throw new Error('BinaryHeap is empty');
+  if (this.isEmpty()) throw new Error('BinaryHeap is empty')
 
-  return this._elements[0];
-};
+  return this._elements[0]
+}
 
 /**
  * Gets the top element of the binary heap.
@@ -76,18 +76,18 @@ BinaryHeap.prototype.peek = function() {
  * @api public
  */
 BinaryHeap.prototype.deq = function() {
-  var first = this.peek();
-  var last = this._elements.pop();
-  var size = this.size();
+  var first = this.peek()
+  var last = this._elements.pop()
+  var size = this.size()
 
-  if (size === 0) return first;
+  if (size === 0) return first
 
-  this._elements[0] = last;
+  this._elements[0] = last
 
   sink.call(this, 0, size)
 
-  return first;
-};
+  return first
+}
 
 /**
  * Push the `element` at the binary heap and returns its new size.
@@ -97,20 +97,20 @@ BinaryHeap.prototype.deq = function() {
  * @api public
  */
 BinaryHeap.prototype.enq = function(element) {
-  var size = this._elements.push(element);
-  var current = size - 1;
+  var size = this._elements.push(element)
+  var current = size - 1
 
   while (current > 0) {
-    var parent = Math.floor((current - 1) / 2);
+    var parent = Math.floor((current - 1) / 2)
 
-    if (this._compare(current, parent) <= 0) break;
+    if (this._compare(current, parent) <= 0) break
 
-    this._swap(parent, current);
-    current = parent;
+    this._swap(parent, current)
+    current = parent
   }
 
-  return size;
-};
+  return size
+}
 
 /**
  * Returns the size of the binary heap.
@@ -119,8 +119,8 @@ BinaryHeap.prototype.enq = function(element) {
  * @api public
  */
 BinaryHeap.prototype.size = function() {
-  return this._elements.length;
-};
+  return this._elements.length
+}
 
 /**
  *  Iterates over queue elements
@@ -128,8 +128,8 @@ BinaryHeap.prototype.size = function() {
  *  @param {Function} fn
  */
 BinaryHeap.prototype.forEach = function(fn) {
-  return this._elements.forEach(fn);
-};
+  return this._elements.forEach(fn)
+}
 
 
 /**
@@ -144,7 +144,7 @@ BinaryHeap.prototype.heapify = function(arr) {
   for (var i = size / 2 - 1; i >= 0; --i) {
     sink.call(this, i, size)
   }
-};
+}
 
 /**
  * Compares the values at position `a` and `b` in the binary heap using its
@@ -156,8 +156,8 @@ BinaryHeap.prototype.heapify = function(arr) {
  * @api private
  */
 BinaryHeap.prototype._compare = function(a, b) {
-  return this._comparator(this._elements[a], this._elements[b]);
-};
+  return this._comparator(this._elements[a], this._elements[b])
+}
 
 /**
  * Swaps the values at position `a` and `b` in the binary heap.
@@ -167,28 +167,28 @@ BinaryHeap.prototype._compare = function(a, b) {
  * @api private
  */
 BinaryHeap.prototype._swap = function(a, b) {
-  var aux = this._elements[a];
-  this._elements[a] = this._elements[b];
-  this._elements[b] = aux;
-};
+  var aux = this._elements[a]
+  this._elements[a] = this._elements[b]
+  this._elements[b] = aux
+}
 
 function sink(current, size) {
   while (current < size) {
-    var largest = current;
-    var left = (2 * current) + 1;
-    var right = (2 * current) + 2;
+    var largest = current
+    var left = (2 * current) + 1
+    var right = (2 * current) + 2
 
     if (left < size && this._compare(left, largest) >= 0) {
-      largest = left;
+      largest = left
     }
 
     if (right < size && this._compare(right, largest) >= 0) {
-      largest = right;
+      largest = right
     }
 
-    if (largest === current) break;
+    if (largest === current) break
 
-    this._swap(largest, current);
-    current = largest;
+    this._swap(largest, current)
+    current = largest
   }
 }
