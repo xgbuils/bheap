@@ -19,12 +19,12 @@ var heap = new BinaryHeap(function(a, b) {
   return a.cash - b.cash;
 });
 
-heap.enq({ cash: 250, name: 'Valentina' });
-heap.enq({ cash: 300, name: 'Jano' });
-heap.enq({ cash: 150, name: 'Fran' );
+heap.push({ cash: 250, name: 'Valentina' });
+heap.push({ cash: 300, name: 'Jano' });
+heap.push({ cash: 150, name: 'Fran' );
 heap.size(); // 3
-heap.peek(); // { cash: 300, name: 'Jano' }
-heap.deq(); // { cash: 300, name: 'Jano' }
+heap.top(); // { cash: 300, name: 'Jano' }
+heap.pop(); // { cash: 300, name: 'Jano' }
 heap.size(); // 2
 ```
 
@@ -47,12 +47,12 @@ The comparator function must return a positive number when `a > b`, 0 when
 
 Compares two `Number` or `String` objects.
 
-### BinaryHeap#deq()
+### BinaryHeap#pop()
 
 Pops the top element of the binary heap.
 Throws an `Error` when the heap is empty.
 
-### BinaryHeap#enq(element)
+### BinaryHeap#push(element)
 
 Push the `element` at the binary heap and returns its new size.
 
@@ -65,9 +65,9 @@ since the heap won't reorder itself.
 
 Returns whether the binary heap is empty or not.
 
-### BinaryHeap#peek()
+### BinaryHeap#top()
 
-Peeks at the top element of the binary heap.
+Gets the top element of the binary heap.
 Throws an `Error` when the heap is empty.
 
 ### BinaryHeap#size()
