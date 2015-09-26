@@ -1,6 +1,6 @@
-# a javascript binary heap implementation
+# bheap
 
-A javascript binary heap implementation Node.js and the browser.
+A javascript binary heap implementation for Node.js and the browser.
 
 ## Installation
 
