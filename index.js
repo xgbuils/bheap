@@ -10,12 +10,13 @@ module.exports = BinaryHeap
  * The comparator function must return a positive number when `a > b`, 0 when
  * `a == b` and a negative number when `a < b`.
  *
+ * @api public
  * @param {(Array|Function)} [array=[]] - array of elements to insert in heap
  * or comparator function.
  * @param {Function} [comparator=BinaryHeap.DEFAULT_COMPARATOR] - function that
  * compares elements to sort binary heap.
  * @returns {BinaryHeap} create instance of binary heap class.
- * @api public
+ * @complexity O(N) such that N = array.length
  */
 function BinaryHeap(array, comparator) {
   if (!array || !Array.isArray(array)) {
@@ -31,10 +32,10 @@ function BinaryHeap(array, comparator) {
  * Compares `a` and `b`, when `a > b` it returns a positive number, when
  * it returns 0 and when `a < b` it returns a negative number.
  *
+ * @api public
  * @param {String|Number} a - first parameter to compare
  * @param {String|Number} b - second parameter to compare
  * @returns {Number} indicates result of comparison
- * @api public
  */
 BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
   if (typeof a === 'number' && typeof b === 'number') {
@@ -50,10 +51,22 @@ BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
 }
 
 /**
+ * Returns the size of the binary heap.
+ *
+ * @api public
+ * @returns {Number} size of heap
+ * @complexity O(1)
+ */
+BinaryHeap.prototype.size = function() {
+  return this._elements.length
+}
+
+/**
  * Returns whether the binary heap is empty or not.
  *
- * @returns {Boolean} indicates if binary heap is empty or not
  * @api public
+ * @returns {Boolean} indicates if binary heap is empty or not
+ * @complexity O(1)
  */
 BinaryHeap.prototype.isEmpty = function() {
   return this.size() === 0
@@ -62,9 +75,10 @@ BinaryHeap.prototype.isEmpty = function() {
 /**
  * Peeks at the top element of the binary heap.
  *
+ * @api public
  * @throws {Error} when the heap is empty.
  * @returns {*} element of binary heap
- * @api public
+ * @complexity O(1)
  */
 BinaryHeap.prototype.top = function() {
   if (this.isEmpty()) throw new Error('BinaryHeap is empty')
@@ -75,9 +89,10 @@ BinaryHeap.prototype.top = function() {
 /**
  * Gets the top element of the binary heap.
  *
+ * @api public
  * @returns {*} element of binary heap
  * @throws {Error} when the queue is empty.
- * @api public
+ * @complexity O(log(N)) such that N === this.size()
  */
 BinaryHeap.prototype.pop = function() {
   var first = this.top()
@@ -96,9 +111,10 @@ BinaryHeap.prototype.pop = function() {
 /**
  * Push the `element` at the binary heap and returns its new size.
  *
+ * @api public
  * @param {*} element of binary heap
  * @returns {Number} new size of heap
- * @api public
+ * @complexity O(log(N)) such that N === this.size()
  */
 BinaryHeap.prototype.push = function(element) {
   var size = this._elements.push(element)
@@ -117,20 +133,12 @@ BinaryHeap.prototype.push = function(element) {
 }
 
 /**
- * Returns the size of the binary heap.
- *
- * @returns {Number} size of heap
- * @api public
- */
-BinaryHeap.prototype.size = function() {
-  return this._elements.length
-}
-
-/**
  *  Creates binary heap elements based on array
  *
+ * @api public
  * @param {Array} arr - list of elements to set in binary heap
  * @returns {undefined} - void
+ * @complexity O(N) such that N === arr.length
  */
 BinaryHeap.prototype.heapify = function(arr) {
   var size = arr.length
@@ -145,10 +153,10 @@ BinaryHeap.prototype.heapify = function(arr) {
  * Compares the values at position `a` and `b` in the binary heap using its
  * comparator function.
  *
+ * @api private
  * @param {Number} a - position of first value
  * @param {Number} b - position of second value
  * @returns {Number} - number such that sign indicates the status of comparison
- * @api private
  */
 BinaryHeap.prototype._compare = function(a, b) {
   return this._comparator(this._elements[a], this._elements[b])
@@ -157,10 +165,10 @@ BinaryHeap.prototype._compare = function(a, b) {
 /**
  * Swaps the values at position `a` and `b` in the binary heap.
  *
+ * @api private
  * @param {Number} a - position of first value
  * @param {Number} b - position of second value
  * @returns {undefined}
- * @api private
  */
 BinaryHeap.prototype._swap = function(a, b) {
   var aux = this._elements[a]
