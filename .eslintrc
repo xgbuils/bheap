@@ -1,6 +1,7 @@
 {
     "rules": {
         "comma-dangle": [2, "never"],
+        "indent": 2,
         "no-console": 2,
         "no-constant-condition": 2,
         "no-trailing-spaces": 2,

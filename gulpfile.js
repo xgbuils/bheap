@@ -3,8 +3,8 @@ var mocha = require('gulp-mocha')
 var eslint = require('gulp-eslint')
 
 gulp.task('test', function () {
-  gulp.src('./test/binaryheap_test.js')
-    .pipe(mocha())
+    gulp.src('./test/binaryheap_test.js')
+        .pipe(mocha())
 })
 
 gulp.task('lint', function () {
