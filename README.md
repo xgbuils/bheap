@@ -1,5 +1,7 @@
 # bheap
 
+![travis ci](https://travis-ci.org/xgbuils/bheap.svg?branch=master)
+
 A javascript binary heap implementation for Node.js and browser with [browserify](http://browserify.org/).
 
 ## Installation
