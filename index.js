@@ -12,7 +12,7 @@ module.exports = BinaryHeap
  *
  * @api public
  * @param {(Array|Function)} [array=[]] - array of elements to insert in heap
- * or comparator function.
+ * or comparator function if array does not passed.
  * @param {Function} [comparator=BinaryHeap.DEFAULT_COMPARATOR] - function that
  * compares elements to sort binary heap.
  * @returns {BinaryHeap} create instance of binary heap class.
@@ -101,12 +101,10 @@ BinaryHeapProto.pop = function() {
     var last = this._elements.pop()
     var size = this.size()
 
-    if (size === 0) return first
-
-    this._elements[0] = last
-
-    sink.call(this, 0, size)
-
+    if (size > 0) {
+        this._elements[0] = last
+        sink.call(this, 0, size)
+    }
     return first
 }
 

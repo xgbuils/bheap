@@ -87,7 +87,7 @@ describe('BinaryHeap()', function() {
         })
     })
 
-    describe('#deq()', function() {
+    describe('#pop()', function() {
         it('fails when the heap is empty', function() {
             var heap = new BinaryHeap()
             expect(function() {
