@@ -180,7 +180,7 @@ function sink(current, size) {
   while (current < size) {
     var largest = current
     var left = (2 * current) + 1
-    var right = (2 * current) + 2
+    var right = left + 1
 
     if (left < size && _compare.call(this, left, largest) >= 0) {
       largest = left
