@@ -50,6 +50,8 @@ BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
   }
 }
 
+var BinaryHeapProto = BinaryHeap.prototype
+
 /**
  * Returns the size of the binary heap.
  *
@@ -57,7 +59,7 @@ BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
  * @returns {Number} size of heap
  * @complexity O(1)
  */
-BinaryHeap.prototype.size = function() {
+BinaryHeapProto.size = function() {
   return this._elements.length
 }
 
@@ -68,7 +70,7 @@ BinaryHeap.prototype.size = function() {
  * @returns {Boolean} indicates if binary heap is empty or not
  * @complexity O(1)
  */
-BinaryHeap.prototype.isEmpty = function() {
+BinaryHeapProto.isEmpty = function() {
   return this.size() === 0
 }
 
@@ -80,7 +82,7 @@ BinaryHeap.prototype.isEmpty = function() {
  * @returns {*} element of binary heap
  * @complexity O(1)
  */
-BinaryHeap.prototype.top = function() {
+BinaryHeapProto.top = function() {
   if (this.isEmpty()) throw new Error('BinaryHeap is empty')
 
   return this._elements[0]
@@ -94,7 +96,7 @@ BinaryHeap.prototype.top = function() {
  * @throws {Error} when the queue is empty.
  * @complexity O(log(N)) such that N === this.size()
  */
-BinaryHeap.prototype.pop = function() {
+BinaryHeapProto.pop = function() {
   var first = this.top()
   var last = this._elements.pop()
   var size = this.size()
@@ -116,7 +118,7 @@ BinaryHeap.prototype.pop = function() {
  * @returns {Number} new size of heap
  * @complexity O(log(N)) such that N === this.size()
  */
-BinaryHeap.prototype.push = function(element) {
+BinaryHeapProto.push = function(element) {
   var size = this._elements.push(element)
   var current = size - 1
 
@@ -140,7 +142,7 @@ BinaryHeap.prototype.push = function(element) {
  * @returns {undefined} - void
  * @complexity O(N) such that N === arr.length
  */
-BinaryHeap.prototype.heapify = function(arr) {
+BinaryHeapProto.heapify = function(arr) {
   var size = arr.length
   this._elements = [].concat(arr)
 
