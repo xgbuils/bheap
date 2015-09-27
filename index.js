@@ -123,9 +123,9 @@ BinaryHeap.prototype.push = function(element) {
   while (current > 0) {
     var parent = Math.floor((current - 1) / 2)
 
-    if (this._compare(current, parent) <= 0) break
+    if (_compare.call(this, current, parent) <= 0) break
 
-    this._swap(parent, current)
+    _swap.call(this, parent, current)
     current = parent
   }
 
@@ -158,7 +158,7 @@ BinaryHeap.prototype.heapify = function(arr) {
  * @param {Number} b - position of second value
  * @returns {Number} - number such that sign indicates the status of comparison
  */
-BinaryHeap.prototype._compare = function(a, b) {
+function _compare(a, b) {
   return this._comparator(this._elements[a], this._elements[b])
 }
 
@@ -170,7 +170,7 @@ BinaryHeap.prototype._compare = function(a, b) {
  * @param {Number} b - position of second value
  * @returns {undefined}
  */
-BinaryHeap.prototype._swap = function(a, b) {
+function _swap (a, b) {
   var aux = this._elements[a]
   this._elements[a] = this._elements[b]
   this._elements[b] = aux
@@ -182,17 +182,17 @@ function sink(current, size) {
     var left = (2 * current) + 1
     var right = (2 * current) + 2
 
-    if (left < size && this._compare(left, largest) >= 0) {
+    if (left < size && _compare.call(this, left, largest) >= 0) {
       largest = left
     }
 
-    if (right < size && this._compare(right, largest) >= 0) {
+    if (right < size && _compare.call(this, right, largest) >= 0) {
       largest = right
     }
 
     if (largest === current) break
 
-    this._swap(largest, current)
+    _swap.call(this, largest, current)
     current = largest
   }
 }
