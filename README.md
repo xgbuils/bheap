@@ -56,14 +56,6 @@ It is a function that heap uses internally to sort its elements.
 
 It is default comparator if any is passed and compares two `Number` or `String` objects. It is **static** member of `BinaryHeap`.
 
-### .isEmpty()
-- Type: Function
-- Returns: Boolean
-
-Returns whether the binary heap is empty or not.
-
-**Time complexity:** *O(1)*
-
 ### .size
 - Type: Number
 

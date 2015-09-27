@@ -66,17 +66,6 @@ Object.defineProperty(BinaryHeapProto, 'size', {
 })
 
 /**
- * Returns whether the binary heap is empty or not.
- *
- * @api public
- * @returns {Boolean} indicates if binary heap is empty or not
- * @complexity O(1)
- */
-BinaryHeapProto.isEmpty = function() {
-    return this.size === 0
-}
-
-/**
  * Peeks at the top element of the binary heap.
  *
  * @api public
@@ -85,7 +74,7 @@ BinaryHeapProto.isEmpty = function() {
  * @complexity O(1)
  */
 BinaryHeapProto.top = function() {
-    if (this.isEmpty()) throw new Error('BinaryHeap is empty')
+    if (!this.size) throw new Error('BinaryHeap is empty')
 
     return this._elements[0]
 }

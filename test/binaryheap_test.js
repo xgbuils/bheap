@@ -53,19 +53,6 @@ describe('BinaryHeap()', function() {
         })
     })
 
-    describe('#isEmpty()', function() {
-        it('returns true when the heap is empty', function() {
-            var heap = new BinaryHeap()
-            heap.isEmpty().should.be.equal(true)
-        })
-
-        it('returns false when the heap is not empty', function() {
-            var heap = new BinaryHeap()
-            heap.push('jano')
-            heap.isEmpty().should.be.equal(false)
-        })
-    })
-
     describe('#top()', function() {
         it('fails when the heap is empty', function() {
             var heap = new BinaryHeap()
@@ -128,7 +115,7 @@ describe('BinaryHeap()', function() {
                 'albert',
                 'albert'
             ])
-            heap.isEmpty().should.be.equal(true)
+            heap.size.should.be.equal(0)
         })
 
         it('not fails with only one element', function() {
@@ -164,7 +151,7 @@ describe('BinaryHeap()', function() {
                 { priority: 5 },
                 { priority: 100 }
             ])
-            heap.isEmpty().should.be.equal(true)
+            heap.size.should.be.equal(0)
         })
     })
 
