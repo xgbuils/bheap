@@ -59,9 +59,11 @@ var BinaryHeapProto = BinaryHeap.prototype
  * @returns {Number} size of heap
  * @complexity O(1)
  */
-BinaryHeapProto.size = function() {
-    return this._elements.length
-}
+Object.defineProperty(BinaryHeapProto, 'size', {
+    get: function () {
+        return this._elements.length
+    }
+})
 
 /**
  * Returns whether the binary heap is empty or not.
@@ -71,7 +73,7 @@ BinaryHeapProto.size = function() {
  * @complexity O(1)
  */
 BinaryHeapProto.isEmpty = function() {
-    return this.size() === 0
+    return this.size === 0
 }
 
 /**
@@ -94,12 +96,12 @@ BinaryHeapProto.top = function() {
  * @api public
  * @returns {*} element of binary heap
  * @throws {Error} when the queue is empty.
- * @complexity O(log(N)) such that N === this.size()
+ * @complexity O(log(N)) such that N === this.size
  */
 BinaryHeapProto.pop = function() {
     var first = this.top()
     var last = this._elements.pop()
-    var size = this.size()
+    var size = this.size
 
     if (size > 0) {
         this._elements[0] = last
@@ -114,7 +116,7 @@ BinaryHeapProto.pop = function() {
  * @api public
  * @param {*} element of binary heap
  * @returns {Number} new size of heap
- * @complexity O(log(N)) such that N === this.size()
+ * @complexity O(log(N)) such that N === this.size
  */
 BinaryHeapProto.push = function(element) {
     var size = this._elements.push(element)

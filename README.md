@@ -22,10 +22,10 @@ var heap = new BinaryHeap(function(a, b) {
 heap.push({ cash: 250, name: 'Valentina' });
 heap.push({ cash: 300, name: 'Jano' });
 heap.push({ cash: 150, name: 'Fran' );
-heap.size(); // 3
+heap.size; // 3
 heap.top(); // { cash: 300, name: 'Jano' }
 heap.pop(); // { cash: 300, name: 'Jano' }
-heap.size(); // 2
+heap.size; // 2
 ```
 
 ## API
@@ -60,11 +60,10 @@ It is default comparator if any is passed and compares two `Number` or `String` 
 
 Returns whether the binary heap is empty or not.
 
-### .size()
-- Type: Function
-- Returns: Integer
+### .size
+- Type: Number
 
-Returns the size of the binary heap.
+The size of the binary heap.
 
 ### .top()
 - Type: Function

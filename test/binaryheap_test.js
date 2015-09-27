@@ -136,7 +136,7 @@ describe('BinaryHeap()', function() {
             heap.push('jano')
 
             heap.pop().should.be.equal('jano')
-            heap.size().should.be.equal(0)
+            heap.size.should.be.equal(0)
         })
 
         it('works with custom comparators', function() {
@@ -175,7 +175,7 @@ describe('BinaryHeap()', function() {
             heap.push('valentina')
             heap.push('fran')
             heap.top().should.be.equal('valentina')
-            heap.size().should.be.equal(3)
+            heap.size.should.be.equal(3)
         })
 
         it('returns the new size of the heap', function() {
@@ -198,21 +198,22 @@ describe('BinaryHeap()', function() {
             }))
 
             heap.top().should.be.deep.equal({ priority: -1 })
-            heap.size().should.be.equal(4)
+            heap.size.should.be.equal(4)
         })
     })
 
-    describe('#size()', function() {
+    describe('#size', function() {
         it('returns 0 when the heap is empty', function() {
             var heap = new BinaryHeap()
-            heap.size().should.be.equal(0)
+            heap.size.should.be.equal(0)
         })
 
         it('returns the size of the heap', function() {
             var heap = new BinaryHeap()
             heap.push('jano')
             heap.push('valentina')
-            heap.size().should.be.equal(2)
+            heap.size = 0
+            heap.size.should.be.equal(2)
         })
     })
 
