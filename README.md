@@ -34,6 +34,8 @@ heap.size; // 2
 
 It creates a new instance of `BinaryHeap` based on its parameters.
 
+**Time complexity:** *O(n)* such that `n === array.length`
+
 ##### array
 - Type: Array
 - Default: []
@@ -60,10 +62,14 @@ It is default comparator if any is passed and compares two `Number` or `String` 
 
 Returns whether the binary heap is empty or not.
 
+**Time complexity:** *O(1)*
+
 ### .size
 - Type: Number
 
 The size of the binary heap.
+
+**Time complexity:** *O(1)*
 
 ### .top()
 - Type: Function
@@ -72,6 +78,8 @@ The size of the binary heap.
 Gets the top element of the binary heap.
 Throws an `Error` when the heap is empty.
 
+**Time complexity:** *O(1)*
+
 ### .pop()
 - Type: Function
 - Returns: Element of instancce of `BinaryHeap`
@@ -79,11 +87,15 @@ Throws an `Error` when the heap is empty.
 Pops the top element of instance of binary heap.
 Throws an `Error` when the heap is empty.
 
+**Time complexity:** *O(log(n))* such that `n === this.size`
+
 ### .push(element)
 - Type: Function
 - Returns: Integer
 
 Push the `element` at the binary heap and returns its new size.
+
+**Time complexity:** *O(log(n))* such that `n === this.size`
 
 ## Testing
 
