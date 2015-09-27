@@ -10,7 +10,7 @@ As npm for Node.js:
 $ npm install bheap
 ```
 
-## Example
+## Usage
 
 ```js
 var BinaryHeap = require('bheap');
@@ -30,44 +30,61 @@ heap.size(); // 2
 
 ## API
 
-### constructor ()
+### constructor ([array], [cmp])
 
-Initializes a new empty `BinaryHeap` which uses `.DEFAULT_COMPARATOR()` as
-the comparator function for its elements.
+It creates a new instance of `BinaryHeap` based on its parameters.
 
-### BinaryHeap(comparator)
+##### array
+- Type: Array
+- Default: []
 
-Initializes a new empty `BinaryHeap` which uses the given `comparator(a, b)`
-function as the comparator for its elements.
+Elements that are inserted in binary heap.
 
-The comparator function must return a positive number when `a > b`, 0 when
-`a == b` and a negative number when `a < b`.
+##### cmp(a, b)
+- Type: Function
+- Default: [BinaryHeap.DEFAULT_COMPARATOR](a, b)
+- Returns: 
+    - positive if `a` is great than `b`
+    - negative if `a`is less than `b`
+    - zero if `a` is equal to `b`
+
+It is a function that heap uses internally to sort its elements.  
 
 ### BinaryHeap.DEFAULT_COMPARATOR(a, b)
 
-Compares two `Number` or `String` objects.
+It is default comparator if any is passed and compares two `Number` or `String` objects. It is **static** member of `BinaryHeap`.
 
-### BinaryHeap#pop()
-
-Pops the top element of the binary heap.
-Throws an `Error` when the heap is empty.
-
-### BinaryHeap#push(element)
-
-Push the `element` at the binary heap and returns its new size.
-
-### BinaryHeap#isEmpty()
+### .isEmpty()
+- Type: Function
+- Returns: Boolean
 
 Returns whether the binary heap is empty or not.
 
-### BinaryHeap#top()
+### .size()
+- Type: Function
+- Returns: Integer
+
+Returns the size of the binary heap.
+
+### .top()
+- Type: Function
+- Returns: Element of instancce of `BinaryHeap`
 
 Gets the top element of the binary heap.
 Throws an `Error` when the heap is empty.
 
-### BinaryHeap#size()
+### .pop()
+- Type: Function
+- Returns: Element of instancce of `BinaryHeap`
 
-Returns the size of the binary heap.
+Pops the top element of instance of binary heap.
+Throws an `Error` when the heap is empty.
+
+### .push(element)
+- Type: Function
+- Returns: Integer
+
+Push the `element` at the binary heap and returns its new size.
 
 ## Testing
 
