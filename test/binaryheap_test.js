@@ -54,11 +54,16 @@ describe('BinaryHeap()', function() {
     })
 
     describe('#top()', function() {
-        it('fails when the heap is empty', function() {
+        it('does not fail when the heap is empty', function() {
             var heap = new BinaryHeap()
             expect(function() {
                 heap.top()
-            }).to.Throw('BinaryHeap is empty')
+            }).to.not.Throw('BinaryHeap is empty')
+        })
+
+        it('returns undefined when the heap is empty', function() {
+            var heap = new BinaryHeap()
+            expect(heap.top()).to.equal(undefined)
         })
 
         it('returns the top element of the heap', function() {
@@ -75,11 +80,16 @@ describe('BinaryHeap()', function() {
     })
 
     describe('#pop()', function() {
-        it('fails when the heap is empty', function() {
+        it('does not fail when the heap is empty', function() {
             var heap = new BinaryHeap()
             expect(function() {
                 heap.pop()
-            }).to.Throw('BinaryHeap is empty')
+            }).to.not.Throw('BinaryHeap is empty')
+        })
+
+        it('returns undefined when the heap is empty', function() {
+            var heap = new BinaryHeap()
+            expect(heap.pop()).to.equal(undefined)
         })
 
         it('pops the top element of the heap', function() {

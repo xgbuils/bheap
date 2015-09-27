@@ -89,13 +89,15 @@ Push the `element` at the binary heap and returns its new size.
 
 ## FAQ
 
-##### Why do BinaryHeap have the property size and not length?
+##### Why do BinaryHeap have the property `size` and not length?
 
-I want to keep the [ECMAScript 6 conventions](http://exploringjs.com/es6/ch_maps-sets.html#leanpub-auto-why-do-maps-and-sets-have-the-property-size-and-not-length).
+I wanted to keep the [ECMAScript 6 conventions](http://exploringjs.com/es6/ch_maps-sets.html#leanpub-auto-why-do-maps-and-sets-have-the-property-size-and-not-length).
+
+##### Why do not methods `pop` or `top` throw an error when binary heap is empty?
+
+I preferred intuitive API for javascript developers. Thus, I wanted to keep the same behaviour that other data structures as Array which doesn't throw an error when is empty and method `pop` is called.
 
 ## Testing
-
-As npm package:
 
 ```
 $ npm test

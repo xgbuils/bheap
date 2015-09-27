@@ -69,13 +69,10 @@ Object.defineProperty(BinaryHeapProto, 'size', {
  * Peeks at the top element of the binary heap.
  *
  * @api public
- * @throws {Error} when the heap is empty.
  * @returns {*} element of binary heap
  * @complexity O(1)
  */
 BinaryHeapProto.top = function() {
-    if (!this.size) throw new Error('BinaryHeap is empty')
-
     return this._elements[0]
 }
 
@@ -84,7 +81,6 @@ BinaryHeapProto.top = function() {
  *
  * @api public
  * @returns {*} element of binary heap
- * @throws {Error} when the queue is empty.
  * @complexity O(log(N)) such that N === this.size
  */
 BinaryHeapProto.pop = function() {
