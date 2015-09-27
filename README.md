@@ -97,6 +97,12 @@ Push the `element` at the binary heap and returns its new size.
 
 **Time complexity:** *O(log(n))* such that `n === this.size`
 
+## FAQ
+
+#### Why do BinaryHeap have the property size and not length?
+
+I want to keep the [ECMAScript 6 conventions](http://exploringjs.com/es6/ch_maps-sets.html#leanpub-auto-why-do-maps-and-sets-have-the-property-size-and-not-length).
+
 ## Testing
 
 As npm package:
