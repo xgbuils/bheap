@@ -1,3 +1,16 @@
+2.0.0
+  * fork priority_queue.js to bheap
+  * refactor methods: 
+    * deq -> pop
+    * enq -> push
+    * peek -> top
+  * add heapify method
+  * size method is changed to size property
+  * isEmpty and forEach methods are deleted
+  * enhance constructor with new array parameter
+  * pop an top doesn't throw exceptions when binary heap is empty
+
+
 1.0.0 / 2015-02-23
 ==================
 
