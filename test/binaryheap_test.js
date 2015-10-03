@@ -242,5 +242,11 @@ describe('BinaryHeap()', function() {
             heap.pop().should.be.equal(2)
             heap.pop().should.be.equal(1)
         })
+
+        it('sets binary heap based on array with odd elements', function () {
+            var heap = new BinaryHeap()
+            heap.heapify([3,1,2])
+
+        })
     })
 })

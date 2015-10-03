@@ -131,7 +131,7 @@ BinaryHeapProto.heapify = function(arr) {
     var size = arr.length
     this._elements = [].concat(arr)
 
-    for (var i = size / 2 - 1; i >= 0; --i) {
+    for (var i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
         sink.call(this, i, size)
     }
 }
