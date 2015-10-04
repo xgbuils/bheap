@@ -1,6 +1,6 @@
 {
   "name": "bheap",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "a javascript binary heap implementation",
   "author": "Xavier Garcia Buils <xgbuils@gmail.com>",
   "devDependencies": {
