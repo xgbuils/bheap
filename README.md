@@ -68,7 +68,7 @@ The size of the binary heap.
 - Returns: Element of instance of `BinaryHeap`
 
 Gets the top element of the binary heap.
-Throws an `Error` when the heap is empty.
+Returns `undefined` when the heap is empty.
 
 **Time complexity:** *O(1)*
 
@@ -77,7 +77,7 @@ Throws an `Error` when the heap is empty.
 - Returns: Element of instance of `BinaryHeap`
 
 Pops the top element of instance of binary heap.
-Throws an `Error` when the heap is empty.
+Returns `undefined` when the heap is empty.
 
 **Time complexity:** *O(log(n))* such that `n === this.size`
 
