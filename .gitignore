@@ -3,3 +3,4 @@ components
 build
 # NPM
 node_modules
+sauce.json

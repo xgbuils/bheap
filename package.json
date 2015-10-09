@@ -4,16 +4,27 @@
   "description": "a javascript binary heap implementation",
   "author": "Xavier Garcia Buils <xgbuils@gmail.com>",
   "devDependencies": {
+    "browserify": "^11.2.0",
     "chai": "^3.3.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
-    "gulp-mocha": "^2.1.3"
+    "gulp-mocha": "^2.1.3",
+    "gulp-util": "^3.0.6",
+    "karma": "^0.13.10",
+    "karma-browserify": "^4.4.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-sauce-launcher": "^0.2.14",
+    "mocha": "^2.3.3",
+    "watchify": "^3.4.0"
   },
   "readmeFilename": "README.md",
   "main": "index.js",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test && karma start karma-sauce.conf.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +42,21 @@
     "priority queue",
     "data structure"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "saucelabs": {
+    "browsers": {
+      "internet explorer": [
+        "9",
+        "10",
+        "11"
+      ],
+      "firefox": [
+        "35"
+      ],
+      "chrome": [
+        "39",
+        "40"
+      ]
+    }
+  }
 }
