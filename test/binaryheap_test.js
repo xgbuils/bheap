@@ -1,12 +1,11 @@
 var BinaryHeap = require('../')
 var chai = require('chai')
 var expect = chai.expect
-chai.should()
 
 describe('BinaryHeap()', function() {
     it('returns an new BinaryHeap', function() {
         var heap = new BinaryHeap()
-        heap.should.be.an.instanceOf(BinaryHeap)
+        expect(heap).to.be.an.instanceOf(BinaryHeap)
     })
 
     it('accepts a comparator function', function() {
@@ -14,14 +13,14 @@ describe('BinaryHeap()', function() {
             return a - b
         })
 
-        heap.should.be.an.instanceOf(BinaryHeap)
+        expect(heap).to.be.an.instanceOf(BinaryHeap)
     })
 
     describe('.DEFAULT_COMPARATOR()', function() {
         context('given strings', function() {
             it('returns a negative number when a < b', function() {
                 console.log(BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina'))
-                BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina').should.be.below(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina')).to.be.below(0)
             })
 
             it('returns 0 number when a == b', function() {
@@ -31,27 +30,27 @@ describe('BinaryHeap()', function() {
 
             it('returns a positive number when a > b', function() {
                 console.log(BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran'))
-                BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran').should.be.above(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran')).to.be.above(0)
             })
         })
 
         context('given numbers', function() {
             it('returns a negative number when a < b', function() {
-                BinaryHeap.DEFAULT_COMPARATOR(10, 1000).should.be.below(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR(10, 1000)).to.be.below(0)
             })
 
             it('returns 0 number when a == b', function() {
-                BinaryHeap.DEFAULT_COMPARATOR(10, 10).should.be.equal(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR(10, 10)).to.be.equal(0)
             })
 
             it('returns a positive number when a > b', function() {
-                BinaryHeap.DEFAULT_COMPARATOR(10, 1).should.be.above(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR(10, 1)).to.be.above(0)
             })
 
             it('works with `Number` objects', function() {
                 var a = Number(10)
                 var b = Number(1000)
-                BinaryHeap.DEFAULT_COMPARATOR(a, b).should.be.below(0)
+                expect(BinaryHeap.DEFAULT_COMPARATOR(a, b)).to.be.below(0)
             })
         })
     })
@@ -78,7 +77,7 @@ describe('BinaryHeap()', function() {
             heap.push('albert')
             heap.push('albert')
             heap.push('frank')
-            heap.top().should.be.equal('zombie')
+            expect(heap.top()).to.be.equal('zombie')
         })
     })
 
@@ -116,7 +115,7 @@ describe('BinaryHeap()', function() {
             unsortedList.forEach(function () {
                 sortedList.push(heap.pop())
             })
-            sortedList.should.be.deep.equal([
+            expect(sortedList).to.be.deep.equal([
                 'zombie',
                 'zombie',
                 'valentina',
@@ -128,15 +127,15 @@ describe('BinaryHeap()', function() {
                 'albert',
                 'albert'
             ])
-            heap.size.should.be.equal(0)
+            expect(heap.size).to.be.equal(0)
         })
 
         it('not fails with only one element', function() {
             var heap = new BinaryHeap()
             heap.push('jano')
 
-            heap.pop().should.be.equal('jano')
-            heap.size.should.be.equal(0)
+            expect(heap.pop()).to.be.equal('jano')
+            expect(heap.size).to.be.equal(0)
         })
 
         it('works with custom comparators', function() {
@@ -158,13 +157,13 @@ describe('BinaryHeap()', function() {
                 sortedList.push(heap.pop())
             })
 
-            sortedList.should.be.deep.equal([
+            expect(sortedList).to.be.deep.equal([
                 { priority: -1 },
                 { priority: 0 },
                 { priority: 5 },
                 { priority: 100 }
             ])
-            heap.size.should.be.equal(0)
+            expect(heap.size).to.be.equal(0)
         })
     })
 
@@ -174,13 +173,13 @@ describe('BinaryHeap()', function() {
             heap.push('jano')
             heap.push('valentina')
             heap.push('fran')
-            heap.top().should.be.equal('valentina')
-            heap.size.should.be.equal(3)
+            expect(heap.top()).to.be.equal('valentina')
+            expect(heap.size).to.be.equal(3)
         })
 
         it('returns the new size of the heap', function() {
             var heap = new BinaryHeap()
-            heap.push('jano').should.be.equal(1)
+            expect(heap.push('jano')).to.be.equal(1)
         })
 
         it('works with custom comparators', function() {
@@ -197,15 +196,15 @@ describe('BinaryHeap()', function() {
                 return b.priority - a.priority
             }))
 
-            heap.top().should.be.deep.equal({ priority: -1 })
-            heap.size.should.be.equal(4)
+            expect(heap.top()).to.be.deep.equal({ priority: -1 })
+            expect(heap.size).to.be.equal(4)
         })
     })
 
     describe('#size', function() {
         it('returns 0 when the heap is empty', function() {
             var heap = new BinaryHeap()
-            heap.size.should.be.equal(0)
+            expect(heap.size).to.be.equal(0)
         })
 
         it('returns the size of the heap', function() {
@@ -213,7 +212,7 @@ describe('BinaryHeap()', function() {
             heap.push('jano')
             heap.push('valentina')
             heap.size = 0
-            heap.size.should.be.equal(2)
+            expect(heap.size).to.be.equal(2)
         })
     })
 
@@ -227,9 +226,9 @@ describe('BinaryHeap()', function() {
             heap.push(b)
             heap.push(c)
 
-            heap.pop().should.be.equal(a)
-            heap.pop().should.be.equal(b)
-            heap.pop().should.be.equal(c)
+            expect(heap.pop()).to.be.equal(a)
+            expect(heap.pop()).to.be.equal(b)
+            expect(heap.pop()).to.be.equal(c)
         })
     })
 
@@ -238,18 +237,18 @@ describe('BinaryHeap()', function() {
             var heap = new BinaryHeap()
             heap.heapify([1,8,4,3,7,2])
 
-            heap.pop().should.be.equal(8)
-            heap.pop().should.be.equal(7)
-            heap.pop().should.be.equal(4)
-            heap.pop().should.be.equal(3)
-            heap.pop().should.be.equal(2)
-            heap.pop().should.be.equal(1)
+            expect(heap.pop()).to.be.equal(8)
+            expect(heap.pop()).to.be.equal(7)
+            expect(heap.pop()).to.be.equal(4)
+            expect(heap.pop()).to.be.equal(3)
+            expect(heap.pop()).to.be.equal(2)
+            expect(heap.pop()).to.be.equal(1)
         })
 
         it('sets binary heap based on array with odd elements', function () {
             var heap = new BinaryHeap()
             heap.heapify([3,1,2])
-
+            
         })
     })
 })
