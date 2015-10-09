@@ -19,17 +19,14 @@ describe('BinaryHeap()', function() {
     describe('.DEFAULT_COMPARATOR()', function() {
         context('given strings', function() {
             it('returns a negative number when a < b', function() {
-                console.log(BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina'))
                 expect(BinaryHeap.DEFAULT_COMPARATOR('jano', 'valentina')).to.be.below(0)
             })
 
             it('returns 0 number when a == b', function() {
-                console.log(BinaryHeap.DEFAULT_COMPARATOR('jano', 'jano'))
                 expect(BinaryHeap.DEFAULT_COMPARATOR('jano', 'jano')).to.be.equal(0)
             })
 
             it('returns a positive number when a > b', function() {
-                console.log(BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran'))
                 expect(BinaryHeap.DEFAULT_COMPARATOR('jano', 'fran')).to.be.above(0)
             })
         })

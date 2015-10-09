@@ -2,6 +2,8 @@
 
 ![travis ci](https://travis-ci.org/xgbuils/bheap.svg?branch=master)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/xgbuils-sauce-bheap.svg)](https://saucelabs.com/u/xgbuils-sauce-bheap)
+
 A javascript binary heap implementation for Node.js and browser with [browserify](http://browserify.org/).
 
 ## Installation

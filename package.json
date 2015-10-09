@@ -24,7 +24,7 @@
   "main": "index.js",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test && karma start karma-sauce.conf.js"
+    "test": "gulp test && sh ./test/bin/karma.sh"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
   "saucelabs": {
     "browsers": {
       "internet explorer": [
+        "8",
         "9",
         "10",
         "11"
