@@ -40,17 +40,18 @@ function BinaryHeap(array, comparator) {
 BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
     if (typeof a === 'number' && typeof b === 'number') {
         return a - b
-    } else {
-        a = a.toString()
-        b = b.toString()
-
-        if (a == b) return 0
-
-        return (a > b) ? 1 : -1
     }
+    a = a.toString()
+    b = b.toString()
+
+    if (a === b) {
+        return 0
+    }
+
+    return (a > b) ? 1 : -1
 }
 
-var BinaryHeapProto = BinaryHeap.prototype
+const BinaryHeapProto = BinaryHeap.prototype
 
 /**
  * Returns the size of the binary heap.
@@ -60,7 +61,7 @@ var BinaryHeapProto = BinaryHeap.prototype
  * @complexity O(1)
  */
 Object.defineProperty(BinaryHeapProto, 'size', {
-    get: function () {
+    get() {
         return this._elements.length
     }
 })
@@ -84,9 +85,9 @@ BinaryHeapProto.top = function() {
  * @complexity O(log(N)) such that N === this.size
  */
 BinaryHeapProto.pop = function() {
-    var first = this.top()
-    var last = this._elements.pop()
-    var size = this.size
+    const first = this.top()
+    const last = this._elements.pop()
+    const size = this.size
 
     if (size > 0) {
         this._elements[0] = last
@@ -104,13 +105,15 @@ BinaryHeapProto.pop = function() {
  * @complexity O(log(N)) such that N === this.size
  */
 BinaryHeapProto.push = function(element) {
-    var size = this._elements.push(element)
-    var current = size - 1
+    const size = this._elements.push(element)
+    let current = size - 1
 
     while (current > 0) {
-        var parent = Math.floor((current - 1) / 2)
+        const parent = Math.floor((current - 1) / 2)
 
-        if (_compare.call(this, current, parent) <= 0) break
+        if (_compare.call(this, current, parent) <= 0) {
+            break
+        }
 
         _swap.call(this, parent, current)
         current = parent
@@ -128,10 +131,10 @@ BinaryHeapProto.push = function(element) {
  * @complexity O(N) such that N === arr.length
  */
 BinaryHeapProto.heapify = function(arr) {
-    var size = arr.length
+    const size = arr.length
     this._elements = [].concat(arr)
 
-    for (var i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
+    for (let i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
         sink.call(this, i, size)
     }
 }
@@ -157,17 +160,17 @@ function _compare(a, b) {
  * @param {Number} b - position of second value
  * @returns {undefined}
  */
-function _swap (a, b) {
-    var aux = this._elements[a]
+function _swap(a, b) {
+    const aux = this._elements[a]
     this._elements[a] = this._elements[b]
     this._elements[b] = aux
 }
 
 function sink(current, size) {
     while (current < size) {
-        var largest = current
-        var left = (2 * current) + 1
-        var right = left + 1
+        let largest = current
+        const left = (2 * current) + 1
+        const right = left + 1
 
         if (left < size && _compare.call(this, left, largest) >= 0) {
             largest = left
@@ -177,7 +180,9 @@ function sink(current, size) {
             largest = right
         }
 
-        if (largest === current) break
+        if (largest === current) {
+            break
+        }
 
         _swap.call(this, largest, current)
         current = largest
