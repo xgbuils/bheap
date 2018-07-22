@@ -1,10 +1,11 @@
 # bheap
 
-![travis ci](https://travis-ci.org/xgbuils/bheap.svg?branch=master)
+[![travis ci][1]][2]
+[![npm version][3]][4]
+[![Coverage Status][5]][6]
+[![Dependency Status][7]][8]
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/xgbuils-sauce-bheap.svg)](https://saucelabs.com/u/xgbuils-sauce-bheap)
-
-A javascript binary heap implementation for Node.js and browser with [browserify](http://browserify.org/).
+A javascript binary heap implementation
 
 ## Installation
 
@@ -114,6 +115,15 @@ I preferred intuitive API for javascript developers. Thus, I wanted to keep the 
 $ npm test
 ```
 
-## Licence
+## License
 
 MIT
+
+  [1]: https://travis-ci.org/xgbuils/rearrange.svg?branch=master
+  [2]: https://travis-ci.org/xgbuils/rearrange
+  [3]: https://badge.fury.io/js/rearrange.svg
+  [4]: https://badge.fury.io/js/rearrange
+  [5]: https://coveralls.io/repos/github/xgbuils/rearrange/badge.svg?branch=master
+  [6]: https://coveralls.io/github/xgbuils/rearrange?branch=master
+  [7]: https://david-dm.org/xgbuils/rearrange.svg
+  [8]: https://david-dm.org/xgbuils/rearrange
