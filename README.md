@@ -18,26 +18,31 @@ $ npm install bheap
 ``` javascript
 var BinaryHeap = require('bheap')
 
-var heap = new BinaryHeap(function(a, b) {
-  return a.cash - b.cash;
-})
+var heap = new BinaryHeap((a, b) => a.diameter - b.diameter)
 
-heap.push({ cash: 250, name: 'Valentina' })
-heap.push({ cash: 300, name: 'Jano' })
-heap.push({ cash: 150, name: 'Fran' )
+heap.push({ diameter: 4878, name: 'Mercury' })
+heap.push({ diameter: 139822, name: 'Jupiter' })
+heap.push({ diameter: 12104, name: 'Venus' })
 heap.size // 3
-heap.top() // { cash: 300, name: 'Jano' }
-heap.pop() // { cash: 300, name: 'Jano' }
+heap.top() // { diameter: 300, name: 'Jupiter' }
+heap.pop() // { diameter: 300, name: 'Jupiter' }
 heap.size // 2
 ```
 
 ## API
 
-### constructor ([array], [cmp])
+### constructor (comparator, [array])
 
-It creates a new instance of `BinaryHeap` based on its parameters.
+It creates a `BinaryHeap` instance based on `comparator` order and filled with `array` elements. The top element of the binary heap is the maximum based on `comparator`
 
 **Time complexity:** *O(n)* such that `n === array.length`
+
+##### comparator(a, b)
+- Type: Function
+- Returns: 
+    - positive if `a` is greater than `b`
+    - negative if `a`is less than `b`
+    - zero if `a` is equal to `b`
 
 ##### array
 - Type: Array
@@ -45,30 +50,9 @@ It creates a new instance of `BinaryHeap` based on its parameters.
 
 Elements that are inserted in binary heap.
 
-##### cmp(a, b)
-- Type: Function
-- Default: [BinaryHeap.DEFAULT_COMPARATOR](#BinaryHeap-DEFAULT_COMPARATOR-a-b)
-- Returns: 
-    - positive if `a` is great than `b`
-    - negative if `a`is less than `b`
-    - zero if `a` is equal to `b`
-
-It is a function that binary heap uses internally to sort its elements.
-
-### BinaryHeap.DEFAULT_COMPARATOR(a,b)
-
-It is default comparator if any is passed to constructor and compares two `Number` or `String` objects. It is **static** property of `BinaryHeap`.
-
-### .size
-- Type: Number
-
-The size of the binary heap.
-
-**Time complexity:** *O(1)*
-
 ### .top()
 - Type: Function
-- Returns: Element of instance of `BinaryHeap`
+- Returns: Element of `BinaryHeap` instance
 
 Gets the top element of the binary heap.
 Returns `undefined` when the heap is empty.
@@ -101,13 +85,13 @@ Sets a new binary heap based on elements of `array` and keeps the same comparato
 
 ## FAQ
 
-##### Why do BinaryHeap have the property `size` and not length?
+##### Why does BinaryHeap have the property `size` and not length?
 
-I wanted to keep the [ECMAScript 6 conventions](http://exploringjs.com/es6/ch_maps-sets.html#leanpub-auto-why-do-maps-and-sets-have-the-property-size-and-not-length).
+I wanted to keep the [ECMAScript 6 conventions](http://exploringjs.com/es6/ch_maps-sets.html#_why-do-maps-and-sets-have-the-property-size-and-not-length).
 
 ##### Why do not methods `pop` or `top` throw an error when binary heap is empty?
 
-I preferred intuitive API for javascript developers. Thus, I wanted to keep the same behaviour that other data structures as Array which doesn't throw an error when is empty and method `pop` is called.
+I preferred intuitive API for javascript developers. Thus, I wanted to keep the same behaviour that other data structures as Array. An empty array does not throw an error when `pop` or `shift` is called. BinaryQueue neither.
 
 ## Testing
 

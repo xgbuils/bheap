@@ -4,51 +4,25 @@
 module.exports = BinaryHeap
 
 /**
- * Initializes a new empty `BinaryHeap` with the given `comparator(a, b)`
- * function, uses `.DEFAULT_COMPARATOR()` when no function is provided.
+ * Given comparator and array, it creates a BinaryHeap instance determined by the comparator
+ * order filled with the array elements.
  *
- * The comparator function must return a positive number when `a > b`, 0 when
- * `a == b` and a negative number when `a < b`.
+ * The comparator function must receive two element arguments and return:
+ * - a positive number when first argument is greater than second
+ * - 0 when first argument is equal to the second
+ * - negative number when first argument is lower than the second
  *
  * @api public
- * @param {(Array|Function)} [array=[]] - array of elements to insert in heap
+ * @param {Function} comparator - function which compares elements.
+ * @param {Array} [array=[]] - array of elements to insert in heap.
  * or comparator function if array does not passed.
- * @param {Function} [comparator=BinaryHeap.DEFAULT_COMPARATOR] - function that
- * compares elements to sort binary heap.
+
  * @returns {BinaryHeap} create instance of binary heap class.
  * @complexity O(N) such that N = array.length
  */
-function BinaryHeap(array, comparator) {
-    if (!array || !Array.isArray(array)) {
-        comparator = array
-        array = []
-    }
-    this._comparator = typeof comparator === 'function'
-        ? comparator : BinaryHeap.DEFAULT_COMPARATOR
-    this.heapify(array)
-}
-
-/**
- * Compares `a` and `b`, when `a > b` it returns a positive number, when
- * it returns 0 and when `a < b` it returns a negative number.
- *
- * @api public
- * @param {String|Number} a - first parameter to compare
- * @param {String|Number} b - second parameter to compare
- * @returns {Number} indicates result of comparison
- */
-BinaryHeap.DEFAULT_COMPARATOR = function(a, b) {
-    if (typeof a === 'number' && typeof b === 'number') {
-        return a - b
-    }
-    a = a.toString()
-    b = b.toString()
-
-    if (a === b) {
-        return 0
-    }
-
-    return (a > b) ? 1 : -1
+function BinaryHeap(comparator, array) {
+    this._comparator = comparator
+    this.heapify(array || [])
 }
 
 const BinaryHeapProto = BinaryHeap.prototype
