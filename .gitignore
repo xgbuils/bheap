@@ -1,6 +1,3 @@
-# Component
-components
-build
-# NPM
-node_modules
-sauce.json
+node_modules/
+.nyc_output/
+coverage/
