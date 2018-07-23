@@ -100,13 +100,13 @@ BinaryHeapProto.push = function(element) {
  *  Creates binary heap elements based on array
  *
  * @api public
- * @param {Array} arr - list of elements to set in binary heap
+ * @param {Array} array - list of elements to set in binary heap
  * @returns {undefined} - void
  * @complexity O(N) such that N === arr.length
  */
-BinaryHeapProto.heapify = function(arr) {
-    const size = arr.length
-    this._elements = [].concat(arr)
+BinaryHeapProto.heapify = function(array) {
+    const size = array.length
+    this._elements = [].concat(array)
 
     for (let i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
         sink.call(this, i, size)

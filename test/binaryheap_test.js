@@ -48,8 +48,17 @@ const numberComparator = (a, b) => a - b
 
 const createHeap = (comparator, list) => {
     const heap = new BinaryHeap(comparator)
-    list.forEach(item => heap.push(item))
+    list.forEach((item) => heap.push(item))
     return heap
+}
+
+const extractSortedItems = (heap) => {
+    const size = heap.size
+    const sortedItems = []
+    for (let index = 0; index < size; ++index) {
+        sortedItems.push(heap.pop())
+    }
+    return sortedItems
 }
 
 test('BinaryHeap', function(t) {
@@ -96,23 +105,14 @@ test('BinaryHeap', function(t) {
 
         t.deepEquals((() => {
             const heap = createHeap(stringComparator, UNSORTED_LIST())
-            const size = heap.size
-            const sortedItems = []
-            for (let index = 0; index < size; ++index) {
-                sortedItems.push(heap.pop())
-            }
-            return sortedItems
+            return extractSortedItems(heap)
         })(), SORTED_LIST(), 'pop returns items starting from the maximum value and decreasing to the minimum value')
 
         t.equals((() => {
             const heap = createHeap(stringComparator, UNSORTED_LIST())
-            const size = heap.size
-            const sortedItems = []
-            for (let index = 0; index < size; ++index) {
-                sortedItems.push(heap.pop())
-            }
+            extractSortedItems(heap)
             return heap.size
-        })(), 0, 'the heap size is after popping all the elements')
+        })(), 0, 'the heap size is 0 after popping all the elements')
 
         t.equals(
             createHeap(stringComparator, ['jam']).pop(),
@@ -129,12 +129,7 @@ test('BinaryHeap', function(t) {
 
         t.deepEquals((() => {
             const heap = createHeap((a, b) => b.priority - a.priority, COMPLEX_UNSORTED_LIST())
-            const size = heap.size
-            const sortedItems = []
-            for (let index = 0; index < size; ++index) {
-                sortedItems.push(heap.pop())
-            }
-            return sortedItems
+            return extractSortedItems(heap)
         })(), COMPLEX_SORTED_LIST(), 'it works with custom comparators')
 
         t.end()
@@ -163,8 +158,7 @@ test('BinaryHeap', function(t) {
 
         t.deepEquals((() => {
             const heap = new BinaryHeap((a, b) => b.priority - a.priority)
-            COMPLEX_SORTED_LIST().forEach(item => heap.push(item))
-
+            COMPLEX_SORTED_LIST().forEach((item) => heap.push(item))
             return heap.top()
         })(), { priority: -1 }, 'works with complex comparators')
 
@@ -201,14 +195,7 @@ test('BinaryHeap', function(t) {
             heap.push(a())
             heap.push(b())
             heap.push(c())
-            const size = heap.size
-
-            const sortedItems = []
-            for (let index = 0; index < size; ++index) {
-                sortedItems.push(heap.pop())
-            }
-
-            return sortedItems
+            return extractSortedItems(heap)
         })(), [a(), b(), c()], 'retains the queue behavior')
 
         t.end()
@@ -218,24 +205,44 @@ test('BinaryHeap', function(t) {
         t.deepEquals((() => {
             const heap = new BinaryHeap(numberComparator)
             heap.heapify([1, 8, 4, 3, 7, 2])
-            const sortedItems = []
-            while (heap.size) {
-                sortedItems.push(heap.pop())
-            }
-
-            return sortedItems
+            return extractSortedItems(heap)
         })(), [8, 7, 4, 3, 2, 1], 'sets binary heap based on array')
 
         t.deepEquals((() => {
             const heap = new BinaryHeap(numberComparator)
-            heap.heapify([3, 1, 2])
-            const sortedItems = []
-            while (heap.size) {
-                sortedItems.push(heap.pop())
-            }
+            heap.heapify([1, 2, 3])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 1)')
 
-            return sortedItems
-        })(), [3, 2, 1], 'sets binary heap based on array with odd elements')
+        t.deepEquals((() => {
+            const heap = new BinaryHeap(numberComparator)
+            heap.heapify([1, 3, 2])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 2)')
+
+        t.deepEquals((() => {
+            const heap = new BinaryHeap(numberComparator)
+            heap.heapify([2, 1, 3])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 3)')
+
+        t.deepEquals((() => {
+            const heap = new BinaryHeap(numberComparator)
+            heap.heapify([2, 3, 1])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 4)')
+
+        t.deepEquals((() => {
+            const heap = new BinaryHeap(numberComparator)
+            heap.heapify([3, 1, 2])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 5)')
+
+        t.deepEquals((() => {
+            const heap = new BinaryHeap(numberComparator)
+            heap.heapify([3, 2, 1])
+            return extractSortedItems(heap)
+        })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 6)')
 
         t.end()
     })
