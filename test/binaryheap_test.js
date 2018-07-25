@@ -201,46 +201,39 @@ test('BinaryHeap', function(t) {
         t.end()
     })
 
-    t.test('.heapify', function(t) {
+    t.test('sorting using pop method', function(t) {
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([1, 8, 4, 3, 7, 2])
+            const heap = new BinaryHeap(numberComparator, [1, 8, 4, 3, 7, 2])
             return extractSortedItems(heap)
         })(), [8, 7, 4, 3, 2, 1], 'sets binary heap based on array')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([1, 2, 3])
+            const heap = new BinaryHeap(numberComparator, [1, 2, 3])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 1)')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([1, 3, 2])
+            const heap = new BinaryHeap(numberComparator, [1, 3, 2])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 2)')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([2, 1, 3])
+            const heap = new BinaryHeap(numberComparator, [2, 1, 3])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 3)')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([2, 3, 1])
+            const heap = new BinaryHeap(numberComparator, [2, 3, 1])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 4)')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([3, 1, 2])
+            const heap = new BinaryHeap(numberComparator, [3, 1, 2])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 5)')
 
         t.deepEquals((() => {
-            const heap = new BinaryHeap(numberComparator)
-            heap.heapify([3, 2, 1])
+            const heap = new BinaryHeap(numberComparator, [3, 2, 1])
             return extractSortedItems(heap)
         })(), [3, 2, 1], 'sets binary heap based on array with 3 elements (permutation 6)')
 
