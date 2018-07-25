@@ -1,9 +1,4 @@
 /**
- * Expose `BinaryHeap`.
- */
-module.exports = BinaryHeap
-
-/**
  * Given comparator and array, it creates a BinaryHeap instance determined by the comparator
  * order filled with the array elements.
  *
@@ -20,9 +15,14 @@ module.exports = BinaryHeap
  * @returns {BinaryHeap} create instance of binary heap class.
  * @complexity O(N) such that N = array.length
  */
-function BinaryHeap(comparator, array) {
+function BinaryHeap(comparator, array = []) {
+    const size = array.length
     this._comparator = comparator
-    this.heapify(array || [])
+    this._elements = [].concat(array)
+
+    for (let i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
+        sink.call(this, i, size)
+    }
 }
 
 const BinaryHeapProto = BinaryHeap.prototype
@@ -97,23 +97,6 @@ BinaryHeapProto.push = function(element) {
 }
 
 /**
- *  Creates binary heap elements based on array
- *
- * @api public
- * @param {Array} array - list of elements to set in binary heap
- * @returns {undefined} - void
- * @complexity O(N) such that N === arr.length
- */
-BinaryHeapProto.heapify = function(array) {
-    const size = array.length
-    this._elements = [].concat(array)
-
-    for (let i = Math.floor(0.5 * size) - 1; i >= 0; --i) {
-        sink.call(this, i, size)
-    }
-}
-
-/**
  * Compares the values at position `a` and `b` in the binary heap using its
  * comparator function.
  *
@@ -162,3 +145,5 @@ function sink(current, size) {
         current = largest
     }
 }
+
+module.exports = BinaryHeap

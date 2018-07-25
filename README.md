@@ -76,13 +76,6 @@ Push the `element` at the binary heap and returns its new size.
 
 **Time complexity:** *O(log(n))* such that `n === this.size`
 
-### .heapify(array)
-- Type: Function
-
-Sets a new binary heap based on elements of `array` and keeps the same comparator.
-
-**Time complexity:** *O(n)* such that `n === array.length`
-
 ## FAQ
 
 ##### Why does BinaryHeap have the property `size` and not length?
